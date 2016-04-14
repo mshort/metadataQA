@@ -1,6 +1,4 @@
-import hashlib
 import sys
-import pprint
 from argparse import ArgumentParser
 from lxml import etree
 import re
@@ -73,7 +71,6 @@ class Record:
         return stats
 
     def has_element(self):
-        out = []
         present = False
         metadata = self.elem.find("{http://www.openarchives.org/OAI/2.0/}metadata/{http://www.loc.gov/mods/v3}mods")
         if metadata != None:
@@ -83,7 +80,6 @@ class Record:
                     return present
 
     def has_xpath(self):
-        out = []
         present = False
         metadata = self.elem.find("{http://www.openarchives.org/OAI/2.0/}metadata/{http://www.loc.gov/mods/v3}mods")
         if metadata != None:
@@ -144,7 +140,6 @@ def calc_completeness(stats_averages):
         'mods:accessCondition'
     ]
 
-    populated_elements = len(stats_averages["field_info"])
     for element in sorted(stats_averages["field_info"]):
             element_completeness_percent = 0
             element_completeness_percent = ((stats_averages["field_info"][element]["field_count"]
@@ -203,7 +198,6 @@ def main():
         "record_count": 0,
         "field_info": {}
     }
-    element_stats_aggregate = {}
 
     parser = ArgumentParser(usage='%(prog)s [options] data_filename.xml')
     parser.add_argument("-e", "--element", dest="element", help="element to print to screen")
