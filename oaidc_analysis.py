@@ -107,6 +107,7 @@ def calc_completeness(stats_averages):
     completeness_total = 0
     wwww_total = 0
     dpla_total = 0
+    niu_total = 0
     collection_total = 0
     collection_field_to_count = 0
 
@@ -119,6 +120,14 @@ def calc_completeness(stats_averages):
 
     dpla = [
         "{http://purl.org/dc/elements/1.1/}title",
+        "{http://purl.org/dc/elements/1.1/}identifier",
+        "{http://purl.org/dc/elements/1.1/}rights"
+    ]
+    niu = [
+        "{http://purl.org/dc/elements/1.1/}title",
+        "{http://purl.org/dc/elements/1.1/}contributor",
+        "{http://purl.org/dc/elements/1.1/}date",
+        "{http://purl.org/dc/elements/1.1/}subject",
         "{http://purl.org/dc/elements/1.1/}identifier",
         "{http://purl.org/dc/elements/1.1/}rights"
     ]
@@ -139,15 +148,20 @@ def calc_completeness(stats_averages):
             #gather dpla completeness
             if element in dpla:
                 dpla_total += element_completeness_percent
+            #gather niu completeness
+            if element in niu:
+                niu_total += element_completeness_percent
 
     completeness["dc_completeness"] = completeness_total / float(15)
     completeness["collection_completeness"] = collection_total / float(collection_field_to_count)
     completeness["wwww_completeness"] = wwww_total / float(len(wwww))
     completeness["dpla_completeness"] = dpla_total / float(len(dpla))
+    completeness["niu_completeness"] = niu_total / float(len(niu))
     completeness["average_completeness"] = ((completeness["dc_completeness"] +
                                              completeness["collection_completeness"] +
                                              completeness["wwww_completeness"] +
-                                             completeness["dpla_completeness"]) / float(4))
+                                             completeness["dpla_completeness"] +
+                                             completeness["niu_completeness"]) / float(4))
     return completeness
 
 
@@ -174,7 +188,7 @@ def pretty_print_stats(stats_averages):
 
     print("\n")
     completeness = calc_completeness(stats_averages)
-    for i in ["dc_completeness", "collection_completeness", "wwww_completeness", "dpla_completeness", "average_completeness"]:
+    for i in ["dc_completeness", "collection_completeness", "wwww_completeness", "dpla_completeness", "niu_completeness", "average_completeness"]:
         print("%23s %f" % (i, completeness[i]))
 
 
