@@ -181,7 +181,7 @@ def calc_completeness(stats_averages):
     completeness["average_completeness"] = ((completeness["collection_completeness"] +
                                              completeness["wwww_completeness"] +
                                              completeness["dpla_completeness"] +
-                                             completeness["niu_completeness"]) / float(5))
+                                             completeness["niu_completeness"]) / float(4))
     return completeness
 
 
