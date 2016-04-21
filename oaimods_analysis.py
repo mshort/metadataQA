@@ -132,7 +132,7 @@ def calc_completeness(stats_averages):
         'mods:name/mods:namePart:',       # who
         'mods:titleInfo/mods:title',         # what
         'mods:identifier',    # where
-        'mods:originInfo/mods:dateCreated'           # when
+        'mods:originInfo/mods:dateIssued'           # when
     ]
 
     dpla = [
