@@ -146,12 +146,10 @@ def calc_completeness(stats_averages):
         'mods:name/mods:role/mods:roleTerm',
         'mods:typeOfResource',
         'mods:genre',
-        'mods:originInfo/mods:place/mods:placeTerm',
         'mods:physicalDescription/mods:internetMediaType',
         'mods:physicalDescription/mods:digitalOrigin',
         'mods:relatedItem/mods:location/mods:url',
-        'mods:accessCondition',
-        'mods:recordInfo/mods:languageOfCataloging/mods:languageTerm'
+        'mods:accessCondition'
     ]
 
     for element in sorted(stats_averages["field_info"]):
